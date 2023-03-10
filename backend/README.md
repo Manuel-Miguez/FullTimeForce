@@ -4,7 +4,7 @@ Backend project for the Technical Assignment Full Time Force
 
 ## About the project
 
-This is a RESTful API using a Nest JS, in this case the entities acting as the Model of the project. Also being a mix of Functional programming and OOP programming being that the definition and structure of the routes-controllers and services are functional, but, the server definition and main error handling of it is a class.
+This is a RESTful API using a Nest JS, in this case the entities acting as the Model of the project. Also being a mix of Functional programming and OOP.
 
 ## Setup/Installation & Running
 
@@ -17,9 +17,9 @@ You will need to create a database and add the information in the `.env` file to
  npm run start:debug # Start project Local Host
 ```
 
-## Development server
+## Documentation of the End Points
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:3535/`. The application will automatically reload if you change any of the source files.
+When the server is running. Navigate to `http://localhost:3535/api` (port depends on `.env.development` file). The application will automatically reload if you change any of the source files.
 
 ## Contact
 
