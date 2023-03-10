@@ -4,6 +4,7 @@ import { Subscription, firstValueFrom, map, catchError } from 'rxjs';
 import { TableService } from '../../data-access/table.service';
 import { CommitHistory } from '../../utils/commit.interface';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-table',
@@ -28,12 +29,13 @@ export class TableComponent implements OnInit, OnDestroy {
   constructor(@Inject(TableService) private readonly service: TableService) {}
 
   ngOnInit(): void {
-    this.nameText = 'tarkah';
-    this.repoText = 'karaoke-rs';
+    this.nameText = environment.defaultRepo.username;
+    this.repoText = environment.defaultRepo.repository;
     this.requestCommitHistory();
   }
 
   private async requestCommitHistory() {
+    Swal.showLoading();
     const result = await firstValueFrom(
       this.service
         .getRepositoryCommitHistory(this.nameText, this.repoText)
@@ -50,6 +52,7 @@ export class TableComponent implements OnInit, OnDestroy {
           })
         )
     );
+    Swal.close();
     if (result) this.commits = result;
   }
 
