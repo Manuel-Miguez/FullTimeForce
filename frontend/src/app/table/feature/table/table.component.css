@@ -3,5 +3,25 @@
 }
 
 th {
-padding: 0;
+  padding: 0;
+}
+.pointer.active.desc:after {
+  content: "▲";
+}
+.pointer.active.asc:after {
+  content: "▼";
+}
+
+th.selectable,
+span {
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+}
+
+.max-vh-75 {
+  max-height: 75vh;
 }
