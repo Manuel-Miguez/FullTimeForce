@@ -4,4 +4,7 @@ export default () => ({
     timeout: parseInt(process.env.HTTP_TIMEOUT, 10) || 1000,
     redirect: parseInt(process.env.HTTP_MAX_REDIRECTS, 10) || 2,
   },
+  auth: {
+    key: process.env.AUTH_KEY,
+  },
 });
