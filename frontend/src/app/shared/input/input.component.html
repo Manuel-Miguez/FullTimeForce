@@ -1,0 +1,11 @@
+<h2 class="font-bold mb-1 text-gray-700 block">{{ name }}</h2>
+<input
+  #inputElement
+  [name]="name"
+  type="text"
+  id="table-search"
+  [class]="classes"
+  [placeholder]="placeHolder"
+  [(ngModel)]="_inputValue"
+  (input)="setValue($event)"
+/>

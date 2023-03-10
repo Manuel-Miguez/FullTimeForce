@@ -1,0 +1,165 @@
+<div class="sm:px-6 w-full">
+  <div class="px-4 md:px-10 py-4 md:py-7">
+    <div class="flex items-center justify-between">
+      <app-input [(inputValue)]="nameText" name="Repository's User Name" appAlphanumeric/>
+      <app-input [(inputValue)]="repoText" name="Repository's Name"   appAlphanumeric/>
+
+      <app-modal></app-modal>
+
+      <button
+      (click)="search()"
+      class="min-[320px]:w-28 sm:w-auto text-sm leading-none text-white  py-3 px-5 drop-shadow-lg bg-blue-500 rounded hover:bg-blue-200 focus:outline-none"
+    >
+      Search Repository
+    </button>
+    </div>
+  </div>
+  <div class="drop-shadow-lg bg-gray-700 py-4 md:py-7 px-4 md:px-8 xl:px-10 overflow-hidden">
+    <div class="mt-7 overflow-x-auto max-vh-75">
+      <table class=" w-full whitespace-nowrap">
+        <thead style="margin-bottom: 20px;">
+          <th
+            class="p-24 mb-7 text-lg leading-none text-white ml-2 aspect-w-16 aspect-h-9 text-center"
+          >
+            Image
+          </th>
+          <th (click)="sort('name')"
+            [ngClass]="{ pointer: true, active: currentColumn == 'name', desc: isDesc, asc: !isDesc }"
+            class="p-24 pb-7 text-lg leading-none text-white  ml-2 aspect-w-16 aspect-h-9 text-center selectable"
+          >
+            Name
+          </th>
+          <th
+            class="p-24 pb-7 text-lg leading-none text-white  ml-2 aspect-w-16 aspect-h-9 text-center"
+          >
+            Message
+          </th>
+          <th
+            (click)="sort('date')"
+            class="p-24 pb-7 text-lg leading-none text-white  ml-2 aspect-w-16 aspect-h-9 text-center selectable"
+            [ngClass]="{ pointer: true, active: currentColumn == 'date', desc: isDesc, asc: !isDesc }"
+          >
+            Date
+          </th>
+          <th
+            class="p-24 pb-7 text-lg leading-none text-white  ml-2 aspect-w-16 aspect-h-9 text-center"
+          >
+            SHA
+          </th>
+        </thead>
+        <tbody>
+          <tr class="h-3"></tr>
+          <ng-container *ngFor="let commit of commits">
+            <tr class="h-16 border border-gray-100 rounded">
+              <td class="pl-5">
+                <div class="flex items-center">
+                  <p
+                    class="text-sm leading-none text-white  ml-2 aspect-w-16 aspect-h-9"
+                  >
+                    <img
+                      class="object-scale-down max-h-10 max-w-xs"
+                      [src]="commit.author.avatar_url"
+                      alt=""
+                      srcset=""
+                    />
+                  </p>
+                </div>
+              </td>
+              <td class="">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  [href]="commit.author.html_url"
+                >
+                  <div class="flex items-center pl-5">
+                    <p
+                      class="text-base font-medium leading-none text-white mr-2"
+                    >
+                      {{ commit.commit.author.name }}
+                    </p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M6.66669 9.33342C6.88394 9.55515 7.14325 9.73131 7.42944 9.85156C7.71562 9.97182 8.02293 10.0338 8.33335 10.0338C8.64378 10.0338 8.95108 9.97182 9.23727 9.85156C9.52345 9.73131 9.78277 9.55515 10 9.33342L12.6667 6.66676C13.1087 6.22473 13.357 5.62521 13.357 5.00009C13.357 4.37497 13.1087 3.77545 12.6667 3.33342C12.2247 2.89139 11.6251 2.64307 11 2.64307C10.3749 2.64307 9.77538 2.89139 9.33335 3.33342L9.00002 3.66676"
+                        stroke="#FFFFFF"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                      <path
+                        d="M9.33336 6.66665C9.11611 6.44492 8.8568 6.26876 8.57061 6.14851C8.28442 6.02825 7.97712 5.96631 7.66669 5.96631C7.35627 5.96631 7.04897 6.02825 6.76278 6.14851C6.47659 6.26876 6.21728 6.44492 6.00003 6.66665L3.33336 9.33332C2.89133 9.77534 2.64301 10.3749 2.64301 11C2.64301 11.6251 2.89133 12.2246 3.33336 12.6666C3.77539 13.1087 4.37491 13.357 5.00003 13.357C5.62515 13.357 6.22467 13.1087 6.66669 12.6666L7.00003 12.3333"
+                        stroke="#FFFFFF"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+              </td>
+              <td class="pl-24">
+                <div class="flex items-center">
+                  <p class="text-sm leading-none text-white  ml-2">
+                    {{ commit.commit.message | slice : 0 : 30 }}
+                    {{ commit.commit.message.length > 30 ? "..." : "" }}
+                  </p>
+                </div>
+              </td>
+              <td class="pl-5">
+                <div class="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    stroke="#FFFFFF"
+                    fill="none"
+                    class="bi bi-calendar"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                    />
+                  </svg>
+
+                  <p class="text-sm leading-none text-white  ml-2">
+                    {{ formatDate(commit.commit.committer.date) }}
+                  </p>
+                </div>
+              </td>
+              <td class="pl-5">
+                <a target="_blank"
+                rel="noopener noreferrer" [href]="commit.html_url" >
+                <button
+                class="py-3 px-3 text-sm focus:outline-none leading-none text-green-500 bg-green-100 hover:bg-green-200 rounded"
+                >
+                {{ commit.sha | slice : 0 : 15 }}
+                    {{ commit.sha.length > 15 ? "..." : "" }}
+              </button>
+            </a>
+              </td>
+              <td class="pl-4">
+                <button
+                  (click)="details(commit)"
+                  class="min-[320px]:w-28 sm:w-auto  text-sm leading-none text-white  py-3 px-5 drop-shadow-lg bg-blue-500 rounded hover:bg-blue-200 focus:outline-none"
+                >
+                  See Details
+                </button>
+              </td>
+            </tr>
+            <tr class="h-3"></tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-modal
+  [data]="modal.data"
+  [closeButton]="modal.closeButton"
+  [title]="modal.title"
+  [dataCSS]="modal.dataCSS"
+></app-modal>
