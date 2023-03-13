@@ -1,12 +1,12 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1. by Default it will connect with NestJS API in this same repo.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1. by Default it will connect with NestJS API in this same repo. Using [NX](https://nx.dev/) based structure.
 
 ## Setup/Installation & Running
 
 ```bash
  # Installing Packages
- cd backend
+ cd frontend
  npm run install .
  npm run start # Start project Local Host
 ```
