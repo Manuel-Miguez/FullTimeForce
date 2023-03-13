@@ -15,7 +15,8 @@ export class TableService {
     repository: string
   ): Observable<CommitHistory[]> {
     return this.http.get<CommitHistory[]>(
-      `${environment.apiUrl}github?user=${userName}&repository=${repository}`
+      `${environment.apiUrl}github?user=${userName}&repository=${repository}`,
+      { headers: { auth: environment.auth } }
     );
   }
 }
