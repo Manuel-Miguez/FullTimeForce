@@ -1,3 +1,34 @@
+# Backend
+
+Backend project for the Technical Assignment Full Time Force
+
+## About the project
+
+This is a RESTful API using a Nest JS, in this case the entities acting as the Model of the project. Also being a mix of Functional programming and OOP programming being that the definition and structure of the routes-controllers and services are functional, but, the server definition and main error handling of it is a class.
+
+## Setup/Installation & Running
+
+You will need to create a database and add the information in the `.env` file to be able to run the project, for this case, by default is using `.env.development` file for basic stuff such as port number and HTTP request parameters
+
+```bash
+ # Installing Packages
+ go to to 'backend/' folder
+ npm run install . # Install Dependecies
+ npm run start:debug # Start project Local Host
+```
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:3535/`. The application will automatically reload if you change any of the source files.
+
+## Contact
+
+Feel free to ask me anything, My [email](mailto:manuelmiguezg@hotmail.com) or [LinkedIn](https://www.linkedin.com/in/manuel-miguez/)
+
+<br>
+<br>
+
+---
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -43,19 +74,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support
